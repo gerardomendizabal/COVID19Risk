@@ -21,6 +21,11 @@ app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
 
 ALLOWED_EXTENSIONS = set(['json'])
 
+USERNAME='dbadmincovid'
+PASSW='Covid19'
+DBHOST='20.185.220.242'
+
+# user='coviduser', passwd='covid'
 
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
@@ -204,7 +209,7 @@ def CheckCoincidencesinBD(filename):
     # print(data['timelineObjects'][0].get('activitySegment'))
     # print(data['timelineObjects'][1]['activitySegment'])
 
-    myConnection = pymysql.connect(host='127.0.0.1', user='coviduser', passwd='covid', db='COVID19',charset="utf8mb4",autocommit=True)
+    myConnection = pymysql.connect(host=DBHOST, user=USERNAME, passwd=PASSW, db='COVID19',charset="utf8mb4",autocommit=True)
     NumberOfVisitedPlaces=0
     ListOfPlaces = []
     RiskScore=0;
@@ -276,7 +281,7 @@ def InsertDataToBD(filename):
     # print(data['timelineObjects'][0].get('activitySegment'))
     # print(data['timelineObjects'][1]['activitySegment'])
 
-    myConnection = pymysql.connect(host='127.0.0.1', user='coviduser', passwd='covid', db='COVID19',charset="utf8mb4",autocommit=True)
+    myConnection = pymysql.connect(host=DBHOST, user=USERNAME, passwd=PASSW, db='COVID19',charset="utf8mb4",autocommit=True)
     NumberOfVisitedPlaces=0
     ListOfPlaces = []
     for i in range(len(data['timelineObjects'])):
