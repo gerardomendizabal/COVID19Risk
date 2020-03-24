@@ -65,14 +65,15 @@ def upload_RiskReport(value):
     VectorForMap = VectorForMap + "],"
     print(VectorForMap)
 
+    valueRisk=round(valueRisk)
     if valueRisk == 0:
         messageToDisplay = "El Nivel de Riesgo Bajo, no se encontró ningún lugar en común con casos confirmados (Risk Score=0)"
-    elif 0 < valueRisk < 1:
+    elif 0 < valueRisk <= 2:
         messageToDisplay = "El Nivel de Riesgo Medio, se encontró un lugar y hora común con un caso confirmado (Risk Score=" + str(
-            round(valueRisk)) + ")"
-    elif valueRisk > 1:
+            valueRisk) + ")"
+    elif valueRisk > 2:
         messageToDisplay = "El Nivel de Riesgo Alto, se encontraron lugares y horas en común con casos infectados (Risk Score=" + str(
-            round(valueRisk)) + ")"
+            valueRisk) + ")"
     return render_template('CasUploadedConfirmation.html', Message=messageToDisplay, VectorPlacesToDisplay=VectorForMap)
 
 
